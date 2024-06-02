@@ -6,6 +6,16 @@ from api.v1.endpoints.users import (
     users_register_user, users_login_user, users_list_users, users_delete_user
 )
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def list_users(request):
+    response = users_list_users(request)
+    return Response({
+        "success": response.data['success'],
+        "data": response.data['data'],
+        "msg": response.data['msg']
+    }, status=response.status_code)
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def register_user(request):
@@ -13,6 +23,7 @@ def register_user(request):
     return Response({
         "success": response.data['success'],
         "data": response.data['data'],
+        "token": response.data['token'],
         "msg": response.data['msg']
     }, status=response.status_code)
 
@@ -20,16 +31,6 @@ def register_user(request):
 @permission_classes([AllowAny])
 def login_user(request):
     response = users_login_user(request)
-    return Response({
-        "success": response.data['success'],
-        "data": response.data['data'],
-        "msg": response.data['msg']
-    }, status=response.status_code)
-
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def list_users(request):
-    response = users_list_users(request)
     return Response({
         "success": response.data['success'],
         "data": response.data['data'],

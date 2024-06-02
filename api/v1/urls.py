@@ -9,10 +9,10 @@ from tasks.views import (
 )
 
 urlpatterns = [
-    path("user/register/", register_user, name="register"),
-    path("user/delete/<int:user_id>", delete_user, name="delete_user"),
-    path("user/login/", login_user, name="login"),
     path("user/list/", list_users, name="list_users"),
+    path("user/register/", register_user, name="register"),
+    path("user/login/", login_user, name="login"),
+    path("user/delete/<int:user_id>", delete_user, name="delete_user"),
     
     path("task/list/", list_tasks, name="list_tasks"),
     path("task/create/", create_task, name="create_task"),

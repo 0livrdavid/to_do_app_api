@@ -1,5 +1,5 @@
 from django.db import models
-from users.models import User
+from django.conf import settings
 from tasks_category.models import TaskCategory
 
 class Task(models.Model):
@@ -16,5 +16,5 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     task_category = models.ForeignKey(TaskCategory, on_delete=models.CASCADE)

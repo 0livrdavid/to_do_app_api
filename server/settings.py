@@ -139,3 +139,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = 'users.User'
 
+# Configuração para adicionar ou não uma barra ao final das URLs
+APPEND_SLASH = True
