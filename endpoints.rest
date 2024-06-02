@@ -2,10 +2,10 @@ POST http://localhost:8000/api/v1/user/register/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "teste3",
-    "name": "Teste 3",
+    "username": "teste1",
+    "name": "Teste 1",
     "password": "1234",
-    "email": "teste3@example.com"
+    "email": "teste1@example.com"
 }
 
 ###
@@ -16,14 +16,14 @@ GET http://localhost:8000/api/v1/user/list HTTP/1.1
 
 POST http://localhost:8000/api/v1/user/login/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer 2c9b69d71daec3378e375d6dafa74c9adf903acc
+Authorization: Bearer 6a4b840bbefcb840c49710af1af4058971eddb38
 
 {
-  "username": "teste3",
+  "username": "teste1",
   "password": "1234"
 }
 
 ###
 
-DELETE http://localhost:8000/api/v1/user/delete/1 HTTP/1.1
+DELETE http://localhost:8000/api/v1/user/delete/3 HTTP/1.1
 

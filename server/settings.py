@@ -89,12 +89,15 @@ WSGI_APPLICATION = "server.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'to_do_app',  # Name of the database
+        'USER': 'admin',  # Username used to authenticate
+        'PASSWORD': 'admin',  # Password used to authenticate
+        'HOST': 'localhost',  # Set to the name of the service in docker-compose.yml
+        'PORT': '5432',  # Default PostgreSQL port
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
