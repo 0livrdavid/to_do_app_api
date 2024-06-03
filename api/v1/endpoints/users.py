@@ -46,14 +46,19 @@ def users_login_user(request):
                     token, _ = Token.objects.get_or_create(user=user)
                     return Response({'success': True, 'data': {'token': token.key}, 'msg': 'Login bem-sucedido'}, status=status.HTTP_200_OK)
                 except Exception as e:
-                    print("erro 2", e)
                     return Response({'success': False, 'data': None, 'msg': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             else:
                 return Response({'success': False, 'data': None, 'msg': 'Credenciais inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response({'success': False, 'data': None, 'msg': 'Nome de usuário e senha são necessários'}, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
-        print("erro 1", e)
+        return Response({'success': False, 'data': None, 'msg': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+def users_logout_user(request):
+    try:
+        request.user.auth_token.delete()
+        return Response({'success': True, 'data': None, 'msg': 'Usuário deslogado com sucesso'}, status=status.HTTP_200_OK)
+    except Exception as e:
         return Response({'success': False, 'data': None, 'msg': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 def users_delete_user(request, user_id):

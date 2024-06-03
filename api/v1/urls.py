@@ -1,27 +1,33 @@
 from django.urls import path
-from . import views
 from users.views import (
-    register_user, delete_user, login_user, list_users
+    register_user, delete_user, login_user, list_users, logout_user
 )
 from tasks.views import (
     list_tasks, create_task, update_task, 
-    delete_task, update_task_completed
+    delete_task, update_task_completed, list_all_tasks
+)
+from tasks_category.views import (
+    list_task_category, create_task_category, update_task_category, delete_task_category, list_all_task_category
 )
 
 urlpatterns = [
     path("user/list/", list_users, name="list_users"),
     path("user/register/", register_user, name="register"),
     path("user/login/", login_user, name="login"),
-    path("user/delete/<int:user_id>", delete_user, name="delete_user"),
+    path("user/logout/", logout_user, name="logout"),
+    path("user/delete/<int:user_id>/", delete_user, name="delete_user"),
     
     path("task/list/", list_tasks, name="list_tasks"),
+    path("task/list_all/", list_all_tasks, name="list_all_tasks"),
     path("task/create/", create_task, name="create_task"),
     path("task/update/<int:task_id>/", update_task, name="update_task"),
     path("task/delete/<int:task_id>/", delete_task, name="delete_task"),
     path("task/update_completed/<int:task_id>/", update_task_completed, name="update_task_completed"),
     
-    path("category/list/", views.list_categories, name="list_categories"),
-    path("category/create/", views.create_category, name="create_category"),
-    path("category/update/<int:category_id>/", views.update_category, name="update_category"),
-    path("category/delete/<int:category_id>/", views.delete_category, name="delete_category"),
+    path("task_category/list/", list_task_category, name="list_task_category"),
+    path("task_category/list_all/", list_all_task_category, name="list_all_task_category"),
+    path("task_category/create/", create_task_category, name="create_task_category"),
+    path("task_category/update/<int:task_category_id>/", update_task_category, name="update_task_category"),
+    path("task_category/delete/<int:task_category_id>/", delete_task_category, name="delete_task_category"),
 ]
+

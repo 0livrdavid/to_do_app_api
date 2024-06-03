@@ -14,7 +14,7 @@ class TaskCreateSerializer(serializers.ModelSerializer):
         model = Task
         fields = [
             'title', 'description', 'deadline', 'priority', 
-            'task_category'
+            'task_category', 'user'
         ]
 
 class TaskUpdateSerializer(serializers.ModelSerializer):
@@ -22,10 +22,5 @@ class TaskUpdateSerializer(serializers.ModelSerializer):
         model = Task
         fields = [
             'title', 'description', 'deadline', 'priority', 
-            'completed', 'task_category'
+            'completed', 'task_category', 'user'
         ]
-
-class TaskDeleteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Task
-        fields = ['id']

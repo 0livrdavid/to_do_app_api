@@ -3,14 +3,24 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from api.v1.endpoints.tasks import (
     tasks_list_tasks, tasks_create_task, tasks_update_task, 
-    tasks_delete_task, tasks_update_completed
+    tasks_delete_task, tasks_update_completed, tasks_list_all_tasks
 )
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
 def list_tasks(request):
     response = tasks_list_tasks(request)
+    return Response({
+        "success": response.data['success'],
+        "data": response.data['data'],
+        "msg": response.data['msg']
+    }, status=response.status_code)
+    
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def list_all_tasks(request):
+    response = tasks_list_all_tasks(request)
     return Response({
         "success": response.data['success'],
         "data": response.data['data'],
