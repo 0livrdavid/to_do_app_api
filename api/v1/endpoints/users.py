@@ -28,9 +28,11 @@ def users_register_user(request):
             serializer.save()
             user = User.objects.get(username=request.data['username'])
             token = Token.objects.create(user=user)
-            return Response({'success': True, 'data': serializer.data, 'token': token.key, 'msg': 'Usuário criado com sucesso'}, status=status.HTTP_201_CREATED)
+            data = serializer.data.copy()
+            data['token'] = token.key
+            return Response({'success': True, 'data': data, 'msg': 'Usuário criado com sucesso'}, status=status.HTTP_201_CREATED)
         else:
-            return Response({'success': False, 'data': None, 'token': None, 'msg': 'Falha na validação'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'success': False, 'data': None, 'msg': 'Falha na validação'}, status=status.HTTP_400_BAD_REQUEST)
     except Exception as e:
         return Response({'success': False, 'data': None, 'token': None, 'msg': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
@@ -44,7 +46,11 @@ def users_login_user(request):
                     if not User.objects.filter(pk=user.pk).exists():
                         return Response({'success': False, 'data': None, 'msg': 'Usuário não existe no banco de dados'}, status=status.HTTP_404_NOT_FOUND)
                     token, _ = Token.objects.get_or_create(user=user)
-                    return Response({'success': True, 'data': {'token': token.key}, 'msg': 'Login bem-sucedido'}, status=status.HTTP_200_OK)
+                    user_data = UserSerializer(user).data
+                    del user_data['id']
+                    del user_data['password']
+                    del user_data['created_at']
+                    return Response({'success': True, 'data': {'token': token.key, 'user': user_data}, 'msg': 'Login bem-sucedido'}, status=status.HTTP_200_OK)
                 except Exception as e:
                     return Response({'success': False, 'data': None, 'msg': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             else:

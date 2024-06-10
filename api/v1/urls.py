@@ -12,9 +12,9 @@ from tasks_category.views import (
 
 urlpatterns = [
     path("user/list/", list_users, name="list_users"),
-    path("user/register/", register_user, name="register"),
-    path("user/login/", login_user, name="login"),
-    path("user/logout/", logout_user, name="logout"),
+    path("user/signup/", register_user, name="register"),
+    path("user/signin/", login_user, name="login"),
+    path("user/signout/", logout_user, name="logout"),
     path("user/delete/<int:user_id>/", delete_user, name="delete_user"),
     
     path("task/list/", list_tasks, name="list_tasks"),

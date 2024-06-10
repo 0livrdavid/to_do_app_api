@@ -23,7 +23,6 @@ def register_user(request):
     return Response({
         "success": response.data['success'],
         "data": response.data['data'],
-        "token": response.data['token'],
         "msg": response.data['msg']
     }, status=response.status_code)
 
