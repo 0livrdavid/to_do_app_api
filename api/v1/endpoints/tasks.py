@@ -8,10 +8,10 @@ from tasks.serializers import (
 )
 
 @permission_classes([IsAuthenticated])
-def tasks_list_tasks(request):
+def tasks_list_tasks(request, task_id):
     try:
         if request.user.is_authenticated:
-            tasks = Task.objects.filter(user=request.user)
+            tasks = Task.objects.filter(user=request.user, task_category=task_id)
             if tasks.exists():
                 serializer = TaskSerializer(tasks, many=True)
                 return Response({'success': True, 'data': serializer.data, 'msg': 'Tarefas recuperadas com sucesso'}, status=status.HTTP_200_OK)

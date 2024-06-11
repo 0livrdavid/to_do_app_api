@@ -47,9 +47,7 @@ def users_login_user(request):
                         return Response({'success': False, 'data': None, 'msg': 'Usuário não existe no banco de dados'}, status=status.HTTP_404_NOT_FOUND)
                     token, _ = Token.objects.get_or_create(user=user)
                     user_data = UserSerializer(user).data
-                    del user_data['id']
                     del user_data['password']
-                    del user_data['created_at']
                     return Response({'success': True, 'data': {'token': token.key, 'user': user_data}, 'msg': 'Login bem-sucedido'}, status=status.HTTP_200_OK)
                 except Exception as e:
                     return Response({'success': False, 'data': None, 'msg': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

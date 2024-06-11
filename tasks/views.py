@@ -9,8 +9,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def list_tasks(request):
-    response = tasks_list_tasks(request)
+def list_tasks(request, task_id):
+    response = tasks_list_tasks(request, task_id)
     return Response({
         "success": response.data['success'],
         "data": response.data['data'],

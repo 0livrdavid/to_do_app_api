@@ -4,7 +4,7 @@ from .models import TaskCategory
 class TaskCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = TaskCategory
-        fields = ['id', 'name', 'description', 'user']
+        fields = ['id', 'name', 'description']
 
 class TaskCategoryCreateSerializer(serializers.ModelSerializer):
     class Meta:
