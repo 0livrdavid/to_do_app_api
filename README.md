@@ -32,6 +32,23 @@ As respostas da API incluirão um código de status HTTP apropriado e, em caso d
 ## Desenvolvimento
 Esta API é construída usando Django e Django REST Framework. Ela é projetada para fácil escalabilidade e integração com aplicações front-end.
 
+## Rodando o Projeto
+1. Navegue até o diretório clonado com `cd [NOME_DO_DIRETÓRIO]`.
+2. Execute o comando `python -m venv venv` para criar um ambiente virtual.
+3. Execute o comando `source venv/bin/activate` para ativar o ambiente virtual.
+4. Execute o comando `pip install -r requirements.txt` para instalar as dependências.
+5. Execute o comando `docker-compose up -d` para criar o container do banco de dados.
+6. Execute o comando `python manage.py migrate` para criar as tabelas no banco de dados.
+7. Execute o comando `python manage.py runserver` para iniciar o servidor.
+
+## Front-end
+O front-end desta aplicação está em um repositório separado, disponível em [To-Do-App](https://github.com/0livrdavid/to_do_app.git).
+
+## Testando os Endpoints
+Sinta-se à vontade para testar os endpoints utilizando o arquivo `endpoints.rest`, que contém exemplos práticos de chamadas para a API.
+
+## Documentação dos Endpoints
+Para detalhes sobre os payloads necessários e os resultados esperados para cada endpoint, consulte o arquivo `ENDPOINTS.md`.
+
 ## Licença
 Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
-
