@@ -2,199 +2,101 @@
 
 ### User Endpoints
 - **Registrar Usuário**
-  - **Endpoint:** `POST /user/register/`
+  - **Endpoint:** `POST /user/signup/`
+  - **Headers:** `Content-Type: application/json`
   - **Payload:** 
     ```json
     {
-      "username": "string",
-      "name": "string",
-      "password": "string",
-      "email": "string"
-    }
-    ```
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
-    }
-    ```
-- **Deletar Usuário**
-  - **Endpoint:** `DELETE /user/delete/{user_id}/`
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
-    }
-    ```
-- **Login Usuário**
-  - **Endpoint:** `POST /user/login/`
-  - **Payload:** 
-    ```json
-    {
-      "username": "string",
-      "password": "string"
-    }
-    ```
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
+      "username": "teste2",
+      "name": "Teste 2",
+      "password": "1234",
+      "email": "teste2@example.com"
     }
     ```
 - **Listar Usuários**
   - **Endpoint:** `GET /user/list`
-  - **Result:** 
+- **Login Usuário**
+  - **Endpoint:** `POST /user/signin/`
+  - **Headers:** `Content-Type: application/json`
+  - **Payload:** 
     ```json
     {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string",
-      "data": [
-        {
-          "id": "int",
-          "username": "string",
-          "name": "string",
-          "email": "string",
-          "created_at": "datetime",
-          "password": "string"
-        }
-      ]
+      "username": "testename",
+      "password": "1234"
     }
     ```
-  
+- **Logout Usuário**
+  - **Endpoint:** `POST /user/signout/`
+  - **Headers:** `Authorization: Token ab80a1871f58f7d9168d981c6b0c6296c5a5d65a`
+- **Deletar Usuário**
+  - **Endpoint:** `DELETE /user/delete/1`
 
 ### Task Endpoints
 - **Listar Tarefas**
-  - **Endpoint:** `GET /task/list`
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
-    }
-    ```
+  - **Endpoint:** `GET /task/list/2/`
+  - **Headers:** `Authorization: Token c3f0a36256b6e18aa94a0fcf212c8eb1664d2027`
+- **Listar Todas as Tarefas**
+  - **Endpoint:** `GET /task/list_all/`
 - **Criar Tarefa**
   - **Endpoint:** `POST /task/create/`
+  - **Headers:** `Content-Type: application/json, Authorization: Token 8e1e94b60160c1f0d056a311cabf2d17b993acaa`
   - **Payload:** 
     ```json
     {
-      "title": "string",
-      "description": "string",
-      "due_date": "YYYY-MM-DD",
-      "category_id": "int"
-    }
-    ```
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
+      "title": "Teste Tarefa 1",
+      "description": "teste",
+      "deadline": "2024-06-12T12:30:00Z",
+      "priority": "low",
+      "user": 2,
+      "task_category": 2
     }
     ```
 - **Atualizar Tarefa**
-  - **Endpoint:** `PUT /task/update/{task_id}/`
+  - **Endpoint:** `PUT /task/update/1/`
+  - **Headers:** `Content-Type: application/json, Authorization: Token b7c01eb7b7fa5a3d78494d8129b73c16806b7724`
   - **Payload:** 
     ```json
     {
-      "title": "string",
-      "description": "string",
-      "due_date": "YYYY-MM-DD",
-      "category_id": "int"
-    }
-    ```
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
+      "title": "Tarefa Atualizada",
+      "description": "Descrição atualizada da tarefa",
+      "deadline": "2024-06-12T18:00:00Z",
+      "priority": "high",
+      "completed": true,
+      "task_category": 1,
+      "user": 1
     }
     ```
 - **Deletar Tarefa**
-  - **Endpoint:** `DELETE /task/delete/{task_id}/`
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
-    }
-    ```
-- **Atualizar Tarefa Completada**
-  - **Endpoint:** `PATCH /task/update_completed/{task_id}/`
-  - **Payload:** 
-    ```json
-    {
-      "completed": "boolean"
-    }
-    ```
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
-    }
-    ```
+  - **Endpoint:** `DELETE /task/delete/1/`
+  - **Headers:** `Authorization: Token b7c01eb7b7fa5a3d78494d8129b73c16806b7724`
 
 ### Category Endpoints
 - **Listar Categorias**
-  - **Endpoint:** `GET /category/list`
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
-    }
-    ```
+  - **Endpoint:** `GET /task_category/list`
+  - **Headers:** `Authorization: Token c3f0a36256b6e18aa94a0fcf212c8eb1664d2027`
+- **Listar Todas as Categorias**
+  - **Endpoint:** `GET /task_category/list_all/`
 - **Criar Categoria**
-  - **Endpoint:** `POST /category/create/`
+  - **Endpoint:** `POST /task_category/create/`
+  - **Headers:** `Content-Type: application/json, Authorization: Token 176e30c3fbf76227cd808147080bcb63be19370c`
   - **Payload:** 
     ```json
     {
-      "name": "string"
-    }
-    ```
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
+      "name": "Categoria 1",
+      "description": "Descrição da categoria 1"
     }
     ```
 - **Atualizar Categoria**
-  - **Endpoint:** `PUT /category/update/{category_id}/`
+  - **Endpoint:** `PUT /task_category/update/1/`
+  - **Headers:** `Content-Type: application/json, Authorization: Token 6a4b840bbefcb840c49710af1af4058971eddb38`
   - **Payload:** 
     ```json
     {
-      "name": "string"
-    }
-    ```
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
+      "name": "Categoria 1 Atualizada",
+      "description": "Descrição atualizada da categoria 1"
     }
     ```
 - **Deletar Categoria**
-  - **Endpoint:** `DELETE /category/delete/{category_id}/`
-  - **Result:** 
-    ```json
-    {
-      "success": "boolean",
-      "date": "datetime",
-      "msg": "string"
-    }
-    ```
+  - **Endpoint:** `DELETE /task_category/delete/2/`
+  - **Headers:** `Authorization: Token 6a4b840bbefcb840c49710af1af4058971eddb38`
+

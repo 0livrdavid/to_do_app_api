@@ -11,7 +11,7 @@ Esta aplicação de tarefas fornece uma API robusta para gerenciar tarefas e cat
 - GET `/users/`: Listar todos os usuários.
 
 ### Gerenciamento de Tarefas
-- GET `/tasks/`: Listar todas as tarefas para o usuário autenticado.
+- GET `/tasks/<int:category_id>/`: Listar todas as tarefas para o usuário autenticado.
 - POST `/tasks/create/`: Criar uma nova tarefa.
 - PUT/PATCH `/tasks/update/<int:task_id>/`: Atualizar uma tarefa existente.
 - DELETE `/tasks/delete/<int:task_id>/`: Excluir uma tarefa.
