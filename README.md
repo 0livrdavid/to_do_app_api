@@ -6,9 +6,11 @@ Esta aplicação de tarefas fornece uma API robusta para gerenciar tarefas e cat
 ## API Endpoints
 
 ### Gerenciamento de Usuários
-- POST `/register/`: Registrar um novo usuário.
-- POST `/login/`: Login para usuários existentes.
-- GET `/users/`: Listar todos os usuários.
+- POST `/user/signup/`: Registrar um novo usuário.
+- POST `/user/signin/`: Login para usuários existentes.
+- POST `/user/signout/`: Deslogar um usuário.
+- GET `/user/list/`: Listar todos os usuários.
+- DELETE `/user/delete/<int:user_id>/`: Excluir um usuário.
 
 ### Gerenciamento de Tarefas
 - GET `/tasks/<int:category_id>/`: Listar todas as tarefas para o usuário autenticado.
